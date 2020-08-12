@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Cropper from 'cropperjs';
 import "cropperjs/dist/cropper.min.css";
-import "./imagecropper.css";
+import "./ImageCropper.css";
 
 function ImageCropper ({ src }) {
 
-  const [imageDestination, setImageDestination] = useState("")
-  const imageElement = React.createRef();
+  const [imageDestination, setImageDestination] = useState(null);
+  const imageElement = useRef();
   console.log(imageElement);
 
   useEffect(() => {
@@ -16,6 +16,7 @@ function ImageCropper ({ src }) {
       aspectRatio: 16/9,
       crop: () => {
         const canvas = cropper.getCroppedCanvas();
+        console.log(canvas);
         setImageDestination(canvas.toDataURL("image/png"));
       }
     })
@@ -24,7 +25,7 @@ function ImageCropper ({ src }) {
   return (
     <>
       <div className="img-container">
-        <img ref={imageElement} alt="Uploaded img" src={src}/>
+        <img className="img-box" ref={imageElement} alt="Uploaded img" src={src}/>
       </div>
       <img className="img-preview" alt="preview" src={imageDestination} />
     </>

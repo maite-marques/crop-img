@@ -1,10 +1,18 @@
 import React from 'react';
-import ImageCropper from './components/imagecropper';
-import ImageTest from './imagetest.png';
+import ImageDropzone from './components/ImageDropzone';
+import ImageCropper from './components/ImageCropper';
+import ImgTest from './imagetest.png';
+import './App.css';
 function App() {
+
   return (
-    <div >
-      <ImageCropper src={ImageTest}/>
+    <div className="container">
+      <div>
+        <ImageDropzone />
+      </div>
+      <div>
+        <ImageCropper src={ImgTest} />
+      </div>
     </div>
   );
 }
